@@ -1,0 +1,7 @@
+# Install after requirements.txt, using --upgrade. The LTX-2.3 condition
+# pipeline currently needs the newer Transformers / Hub stack below.
+diffusers @ git+https://github.com/huggingface/diffusers.git@main
+transformers>=5.16,<6
+huggingface-hub>=1.23,<2
+accelerate>=1.14,<2
+safetensors>=0.8,<1

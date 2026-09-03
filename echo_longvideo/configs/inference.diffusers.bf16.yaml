@@ -1,0 +1,46 @@
+# Echo 1.5 BF16 inference implemented on Hugging Face Diffusers components.
+
+paths:
+  # Standard Diffusers LTX-2.3 pipeline layout.
+  base_model: checkpoints/LTX-2.3-Diffusers
+  # Created once by scripts/convert_echo_to_diffusers.py.
+  echo_model: checkpoints/echo15_full_dmd_diffusers
+  requests_dir: examples/the_last_visa/requests
+  requests_glob: "*.json"
+  output_root: inference_result_diffusers
+
+video:
+  num_frames: 241
+  height: 736
+  width: 1280
+  fps: 25
+  seed: 42
+
+denoising:
+  # Echo DMD predicts x0 and re-noises with fresh Gaussian noise at each next sigma.
+  sigmas: [1.0, 0.99375, 0.9875, 0.98125, 0.975, 0.909375, 0.725, 0.421875, 0.0]
+
+memory:
+  max_size: 7
+  enable_audio: true
+  position_mode: slot_center
+  position_offset: 500.0
+  position_slot_stride: 50.0
+  voice_filter:
+    enabled: true
+    backend: msst_speech
+    min_output_rms: 0.004
+    msst_dir: third_party/MSST-WebUI
+    msst_model_path: checkpoints/msst/model_bandit_plus_dnr_sdr_11.47.chpt
+    msst_config_path: third_party/MSST-WebUI/configs_backup/multi_stem_models/model_bandit_plus_dnr_sdr_11.47.chpt.yaml
+    msst_model_type: bandit
+    msst_sample_rate: 44100
+    msst_device: auto
+    msst_local_rank_env: LOCAL_RANK
+
+inference:
+  device: cuda
+  # none: fastest/highest VRAM; model: balanced; sequential: lowest VRAM.
+  offload: model
+  max_sequence_length: 1024
+  vae_tiling: true

@@ -143,6 +143,28 @@ python inference.py --config configs/inference.fp4.yaml
 
 Outputs are written to `inference_result/<work-id>/<shot-id>/`.
 
+### Diffusers backend
+
+An alternative BF16 backend uses Hugging Face Diffusers components while
+preserving Echo's ref/multishot-memory conditioning and stochastic 8-step DMD
+sampler. The converter exports the checkpoint's Transformer, connectors, video
+VAE, audio VAE, and 48 kHz BWE vocoder; it does not substitute generic LTX
+weights. Convert the released BF16 checkpoint once, then run the dedicated
+entrypoint:
+
+```bash
+uv pip install --upgrade -r requirements-diffusers.txt
+python scripts/convert_echo_to_diffusers.py \
+  --checkpoint checkpoints/echo15_full_dmd \
+  --output checkpoints/echo15_full_dmd_diffusers
+python inference_diffusers.py \
+  --config configs/inference.diffusers.bf16.yaml \
+  --request examples/the_last_visa/requests/009_01_shot_008_nathan_replies_to_elena_r2v.json
+```
+
+See [`docs/DIFFUSERS_INFERENCE.md`](docs/DIFFUSERS_INFERENCE.md) for the server
+paths, dry-run command, offload modes, and current precision support.
+
 ## Consumer GPU support
 
 Echo 1.5 includes low-memory profiles for consumer GPUs. They combine
