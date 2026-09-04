@@ -12,6 +12,7 @@
   <a href="https://www.researchgate.net/publication/405770309_JoyAI-Echo_Pushing_the_Frontier_of_Long_Audio-Visual_Generation"><b>📄 Paper 1.0</b></a> |
   <a href="https://arxiv.org/abs/2608.23383"><b>📄 Paper 1.5</b></a> |
   <a href="https://arxiv.org/abs/2608.23189"><b>📄 Echo-WM Paper</b></a> |
+  <a href="https://arxiv.org/abs/2609.03557"><b>📄 UE Pipeline</b></a> |
   <a href="https://echo-team-joy-future-academy-jd.github.io/Echo-1.5-Page/"><b>🌐 Project Page</b></a> |
   <a href="https://huggingface.co/jdopensource/JoyAI-Echo"><b>🤗 Long Video Hugging Face</b></a>
 </p>
@@ -24,6 +25,7 @@
 
 ## 📰 News
 
+- 🎮 **2026-09-04** — Released [UE simulation pipeline](https://arxiv.org/abs/2609.03557) for the Echo-WM world data engine, covering physics-based trajectory generation, Movie Render Queue rendering, and distributed scheduling.
 - 🚀 **2026-08-28** — Released [JoyAI-Echo 1.5 / Echo-LongVideo](echo_longvideo/README.md), including long-horizon generation, consumer-GPU inference profiles, and the Director Agent.
 - 🌍 **2026-08-26** — Released [Echo-WM](echo_wm/README.md), our omnimodal world model for interactive audio-visual generation.
 - 🎬 **2026-06-22** — Released [JoyAI-Echo 1.0](https://github.com/jd-opensource/JoyAI-Echo/tree/echo1.0), now preserved on the `echo1.0` archive branch.
